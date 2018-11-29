@@ -7,4 +7,4 @@
 *.sln
 *.sw*
 vendor
-./client/node_modules
+node_modules
