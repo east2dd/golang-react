@@ -1,28 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { getCategories } from './actions'
 
 class App extends Component {
+  componentWillMount(){
+    this.props.dispatch(getCategories())
+  }
+
+  renderList = ({list}) => {
+    if(list){
+      return list.map((item)=>{
+        return(
+          <div key={item.id} className="item-list">
+            <div className="name">{item.Name}</div>
+            <div className="description">{item.Description}</div>
+          </div>
+        )
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="top">
+          <h3>Categories</h3>
+          <Link to="/products/new">Add</Link>
+        </div>
+        <div className="categories_container">
+          {this.renderList(this.props)}
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    categories: state.categories
+  }
+}
+
+export default connect(mapStateToProps)(App)
