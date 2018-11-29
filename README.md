@@ -1,6 +1,6 @@
-# Golang Vue Boilerplate (golang, mysql, vue)
+# Golang React Boilerplate (golang, mysql, react)
 ##### Golang - REST API
-##### Vue - Frontend
+##### React - Frontend
   
 # REST API
 Installing project with go get and install dependencies
