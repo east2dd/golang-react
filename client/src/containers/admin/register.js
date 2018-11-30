@@ -29,7 +29,7 @@ class Register extends PureComponent {
 
   handleInputLastname = (event) => {
     this.setState({lastname:event.target.value})
-  } 
+  }
 
   componentWillReceiveProps(nextProps){
     if(nextProps.user.register === false){
@@ -97,7 +97,7 @@ class Register extends PureComponent {
                 />
           </div>
 
-          <button type="submit">Add user</button>
+          <button type="submit">Create User</button>
           <div className="error">
               {this.state.error}
           </div>
@@ -108,7 +108,7 @@ class Register extends PureComponent {
 }
 function mapStateToProps(state){
     return{
-        user:state.user
+        user: state.user
     }
 }
 

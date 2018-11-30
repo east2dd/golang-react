@@ -15,7 +15,6 @@ class AddProduct extends Component {
         }
     }
 
-
     handleInput = (event,name) => {
         const newFormdata = {
             ...this.state.formdata
@@ -36,7 +35,6 @@ class AddProduct extends Component {
             </div>
         :null
     )
-
 
     submitForm = (e) => {
         e.preventDefault();

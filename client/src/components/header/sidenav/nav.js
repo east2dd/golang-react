@@ -1,6 +1,6 @@
 import React from 'react';
 import SideNav from 'react-simple-sidenav';
-import NavItems from './NavItems'
+import NavItems from './nav_items'
 
 const Nav = (props) => {
     return (

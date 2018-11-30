@@ -4,6 +4,7 @@ import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
+import ReduxThunk from 'redux-thunk';
 
 import './index.css';
 import Routes from './routes';
@@ -12,7 +13,7 @@ import * as serviceWorker from './serviceWorker';
 serviceWorker.unregister();
 
 // REDUCERS
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

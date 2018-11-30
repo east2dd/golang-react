@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions'
 
-
 class Login extends Component {
   state = {
     email:'',
@@ -14,6 +13,7 @@ class Login extends Component {
   handleInputEmail = (event) => {
     this.setState({email:event.target.value})
   }
+
   handleInputPassword = (event) => {
     this.setState({password:event.target.value})
   }
@@ -59,7 +59,7 @@ class Login extends Component {
           <div className="error">
           {
             user.login ? 
-                <div>{user.login.message}</div>
+                <div>{ user.login.message }</div>
             :null
           }
           </div>

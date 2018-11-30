@@ -8,10 +8,10 @@ class HomeContainer extends Component {
       this.props.dispatch(getProducts(1,0,'desc'))
     }
 
-    renderItems = (products) => (
-      products.list ?  
-        products.list.map( item => (
-          <ProductItem {...item} key={item.id}/>
+    renderItems = ({list}) => (
+      list && list.length > 0?  
+        list.map( item => (
+          <ProductItem {...item} key={item.ID}/>
         ))
       :null
     )
