@@ -1,0 +1,23 @@
+header{
+  background: #4CAF50;
+  color: #fff;
+}
+
+h5{
+  padding: 20px;
+  background: #4CAF50;
+
+}
+
+.navItem{
+  padding: 10px;
+}
+
+.navItem a{
+  color: #333333;
+  text-decoration: none;
+}
+
+.navItem a span{
+  padding-right: 20px;
+}

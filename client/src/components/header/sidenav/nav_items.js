@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 
-const NavItems = ({user}) => {
-
+const NavItems = ({title, user}) => {
     const items = [
         {
             type:'navItem',
@@ -68,23 +67,19 @@ const NavItems = ({user}) => {
     )
 
     const showItems = () => (
-        user.login ?
+        user ?
             items.map((item,i)=>{
-                if(user.login.isAuth) {
-                    return !item.exclude ?
-                        element(item,i)
-                    :null
-                } else {
-                    return !item.restricted ?
-                        element(item,i)
-                    :null
-                }
+              return !item.restricted ?
+                element(item,i)
+              :null
             })
         :null
     )
 
+    console.log(title)
     return (
-        <div>
+        <div class="navigations">
+            <h5>{title}</h5>
             {showItems()}
         </div>
     );

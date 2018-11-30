@@ -8,11 +8,11 @@ const Nav = (props) => {
             showNav={props.showNav}
             onHideNav={props.onHideNav}
             navStyle={{
-                background:'#242424',
+                background:'#ffffff',
                 maxWidth:'220px'
             }}
        >
-           <NavItems/>
+           <NavItems title="GoReact"/>
         </SideNav>
     );
 };

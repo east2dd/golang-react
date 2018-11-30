@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 import Nav from './sidenav/nav';
-
+import './header.css'
 class Header extends Component {
   state = {
       showNav:false
