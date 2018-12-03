@@ -9,9 +9,12 @@ class ProductList extends Component {
       if(list){
         return list.map((item)=>{
           return(
-            <div key={item.id} className="item-list">
-              <div className="name">{item.Name}</div>
-              <div className="description">{item.Description}</div>
+            <div key={item.id} className="item-list columns medium-4">
+              <div>
+                <Link to={`/products/${item.ID}`} className="product-item"><img src="https://via.placeholder.com/300.png"/></Link>
+              </div>
+              <p className="name">{item.Name}</p>
+              <p className="description">{item.Description}</p>
             </div>
           )
         })
@@ -22,7 +25,9 @@ class ProductList extends Component {
       return (
         <div className="App">
           <div className="categories_container">
-            {this.renderList(this.props)}
+            <div class="row">
+              {this.renderList(this.props)}
+            </div>
           </div>
         </div>
       );

@@ -15,16 +15,10 @@ const NavItems = ({title, user}) => {
         {
             type:'navItem',
             icon:'file-text-o',
-            text:'My Profile',
-            link:'/user',
-            restricted:true
-        },
-        {
-            type:'navItem',
-            icon:'file-text-o',
-            text:'Add Admins',
+            text:'Register',
             link:'/user/register',
-            restricted:true
+            restricted:false,
+            exclude:true
         },
         {
             type:'navItem',
@@ -33,20 +27,6 @@ const NavItems = ({title, user}) => {
             link:'/login',
             restricted:false,
             exclude:true
-        },
-        {
-            type:'navItem',
-            icon:'file-text-o',
-            text:'My reviews',
-            link:'/user/user-reviews',
-            restricted:true
-        },
-        {
-            type:'navItem',
-            icon:'file-text-o',
-            text:'Add reviews',
-            link:'/user/add',
-            restricted:true
         },
         {
             type:'navItem',
@@ -67,18 +47,21 @@ const NavItems = ({title, user}) => {
     )
 
     const showItems = () => (
-        user ?
-            items.map((item,i)=>{
-              return !item.restricted ?
+      items.map((item,i)=>{
+        if(user.login && user.login.status) {
+            return !item.exclude ?
                 element(item,i)
-              :null
-            })
-        :null
+            :null
+        } else {
+            return !item.restricted ?
+                element(item,i)
+            :null
+        }
+      })
     )
 
-    console.log(title)
     return (
-        <div class="navigations">
+        <div className="navigations">
             <h5>{title}</h5>
             {showItems()}
         </div>
@@ -86,6 +69,7 @@ const NavItems = ({title, user}) => {
 };
 
 function mapStateToProps(state){
+    console.log(state.user)
     return{
         user: state.user
     }

@@ -15,13 +15,13 @@ export default function(ComposedClass,reload){
     componentWillReceiveProps(nextProps){
       this.setState({loading:false})
 
-      if(!nextProps.user.login.isAuth){
+      if(!nextProps.user.login.status){
         if(reload){
           this.props.history.push('/login');
         }
       } else {
         if(reload === false) {
-          this.props.history.push('/user')
+          this.props.history.push('/user/profile')
         }
       }
     }

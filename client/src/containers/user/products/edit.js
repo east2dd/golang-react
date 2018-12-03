@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getProduct, updateProduct, clearProduct, deleteProduct } from '../../actions'
+import { getProduct, updateProduct, clearProduct, deleteProduct } from '../../../actions'
 
-class EditProduct extends PureComponent {
+class ProductEdit extends PureComponent {
   state = {
     formdata:{
       id: this.props.match.params.id,
@@ -129,4 +129,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(EditProduct)
+export default connect(mapStateToProps)(ProductEdit)

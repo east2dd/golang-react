@@ -11,7 +11,9 @@ class HomeContainer extends Component {
     renderItems = ({list}) => (
       list && list.length > 0?  
         list.map( item => (
-          <ProductItem {...item} key={item.ID}/>
+          <div className="columns medium-4" key={item.ID}>
+            <ProductItem {...item} key={item.ID}/>
+          </div>
         ))
       :null
     )
@@ -24,11 +26,16 @@ class HomeContainer extends Component {
     render() {
       return (
         <div>
-          {this.renderItems(this.props.products)}
-          <div 
-            className="loadmore"
-            onClick={this.loadmore}
-          >Load More</div>
+          <div className="row">
+            <div className="columns"><h1>Home</h1></div>
+          </div>
+          <div className="row">
+            {this.renderItems(this.props.products)}
+            <div 
+              className="loadmore"
+              onClick={this.loadmore}
+            >Load More</div>
+          </div>
         </div>
       );
     }

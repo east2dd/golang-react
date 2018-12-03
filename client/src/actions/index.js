@@ -1,4 +1,5 @@
 import axios from '../axios-auth';
+import cookie from 'react-cookies'
 
 export function getProducts(
     limit = 10,
@@ -91,7 +92,13 @@ export function clearProduct(){
 
 export function loginUser({email,password}){
   const request = axios.post('/api/user/login',{ email, password })
-              .then(response => response.data)
+              .then((response) => {
+                const token = response.data.data.Token
+                cookie.save('user-token', token)
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+                return response.data
+              })
 
   return {
     type:'USER_LOGIN',
@@ -101,7 +108,10 @@ export function loginUser({email,password}){
 
 export function auth(){
   const request = axios.get('/api/user/me')
-              .then(response => response.data);
+              .then(response => response.data)
+              .catch(err => {
+                cookie.remove('user-token')
+              })
 
   return {
     type:'USER_AUTH',

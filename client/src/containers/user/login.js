@@ -19,20 +19,25 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.user.login.isAuth){
+    if(nextProps.user.login && nextProps.user.login.status){
       this.props.history.push('/user')
     }
   }
 
   submitForm = (e) =>{
     e.preventDefault();
-    this.props.dispatch(loginUser(this.state))
+    this.props.dispatch(loginUser(this.state)).then((response)=>{
+      if(response.payload.status === true)
+      {
+        this.props.history.push('/')
+      }
+    })
   }
 
   render() {
     let user = this.props.user;
     return (
-      <div className="rl_container">
+      <div className="row">
         <form onSubmit={this.submitForm}>
           <h2>Log in here</h2>
 
@@ -54,9 +59,9 @@ class Login extends Component {
             />
           </div>
 
-          <button type="submit">Log in</button>
+          <button type="submit" className="button">Log in</button>
 
-          <div className="error">
+          <div className="error callout alert">
           {
             user.login ? 
                 <div>{ user.login.message }</div>

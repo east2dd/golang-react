@@ -14,6 +14,9 @@ class ProductView extends Component {
   renderProduct = (product) => (
     product ? 
       <div className="product">
+        <div>
+          <img src="https://via.placeholder.com/300.png"/>
+        </div>
         <h2>{ product.Name }</h2>
         <p>{ product.Description }</p>
       </div>
@@ -24,7 +27,14 @@ class ProductView extends Component {
     let product = this.props.product;
     return (
       <div>
-        {this.renderProduct(product)}
+        <div className="row">
+          <div className="columns"><h1>Product</h1></div>
+        </div>
+        <div className="row">
+          <div className="columns">
+            {this.renderProduct(product)}
+          </div>
+        </div>
       </div>
     );
   }
