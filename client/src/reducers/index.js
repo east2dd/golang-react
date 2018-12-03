@@ -1,11 +1,18 @@
 import { combineReducers } from 'redux';
-import categorires from './categories_reducer'
+import categories from './categories_reducer'
 import products from './products_reducer'
 import user from './user_reducer'
 import { reducer as formReducer } from 'redux-form';
 
+const initialState = { 
+  user: {},
+  products: [],
+  categories: []
+};
+
 const rootReducer = combineReducers({
-  categorires,
+  initialState,
+  categories,
   products,
   user,
   form: formReducer
