@@ -15,7 +15,7 @@ export default function(ComposedClass,reload){
     componentWillReceiveProps(nextProps){
       this.setState({loading:false})
 
-      if(!nextProps.user.login.status){
+      if(!nextProps.user.login || !nextProps.user.login.status){
         if(reload){
           this.props.history.push('/login');
         }

@@ -30,6 +30,7 @@ var TokenAuthentication = func(next http.HandlerFunc) http.HandlerFunc {
 		}
 
 		tokenPart := splitted[1]
+
 		account := models.GetUserByToken(tokenPart)
 		if account == nil {
 			response = u.Message(false, "Invalid/Malformed auth token")

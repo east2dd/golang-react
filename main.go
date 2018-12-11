@@ -5,18 +5,22 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/gorilla/mux"
 	"github.com/xyingsoft/golang-vue/controllers"
 	"github.com/xyingsoft/golang-vue/middleware"
 )
 
-func IndexHandler(entrypoint string) func(w http.ResponseWriter, r *http.Request) {
-	fn := func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, entrypoint)
-	}
+func neuter(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if len(r.URL.Path) > 1 && strings.HasSuffix(r.URL.Path, "/") {
+			http.NotFound(w, r)
+			return
+		}
 
-	return http.HandlerFunc(fn)
+		next.ServeHTTP(w, r)
+	})
 }
 
 func main() {
@@ -45,15 +49,14 @@ func main() {
 	router.HandleFunc("/api/products", middleware.TokenAuthentication(controllers.CreateProduct)).Methods("POST")
 	router.HandleFunc("/api/products/{id}", middleware.TokenAuthentication(controllers.UpdateProduct)).Methods("PUT")
 
-	// static := os.Getenv("STATIC_PATH")
-	// entry := fmt.Sprintf("%s/index.html", static)
-	// router.PathPrefix("/dist").Handler(http.FileServer(http.Dir(static)))
-	// router.PathPrefix("/").HandlerFunc(IndexHandler(entry))
+	fileServer := http.FileServer(http.Dir("./client/build"))
+	router.PathPrefix("/").Handler(neuter(fileServer))
 
 	port := os.Getenv("APP_PORT")
 	if port == "" {
 		port = "3000"
 	}
+
 	fmt.Println("Listening: " + port)
 	log.Fatal(http.ListenAndServe(":"+port, router))
 }
