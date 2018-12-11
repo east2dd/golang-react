@@ -29,7 +29,7 @@ export DB_DATABASE=store
 Seeding sample data to database
 ```sh
 $ cd $GOPATH/src/path/to/project/root
-go run seeds/main.go
+go run seed.go
 ```
 
 Running project
