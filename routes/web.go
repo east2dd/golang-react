@@ -30,7 +30,7 @@ var Mount = func(router *mux.Router) {
 		return
 	})
 
-	// API route
+	// API routes
 	router.HandleFunc("/api/user/new", controllers.CreateAccount).Methods("POST")
 	router.HandleFunc("/api/user/login", controllers.Authenticate).Methods("POST")
 	router.HandleFunc("/api/user/me", middleware.TokenAuthentication(controllers.CheckAuth)).Methods("GET")
@@ -44,6 +44,7 @@ var Mount = func(router *mux.Router) {
 	router.HandleFunc("/api/products", middleware.TokenAuthentication(controllers.CreateProduct)).Methods("POST")
 	router.HandleFunc("/api/products/{id}", middleware.TokenAuthentication(controllers.UpdateProduct)).Methods("PUT")
 
+	// serve static files
 	fileServer := http.FileServer(http.Dir("./client/build"))
 	router.PathPrefix("/").Handler(neuter(fileServer))
 }

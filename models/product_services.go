@@ -44,9 +44,10 @@ func GetProducts() []*Product {
 
 func GetCategoriesFor(product uint) []*Category {
 	categories := make([]*Category, 0)
-	rows, err := db.Query(`SELECT categories.id, categories.name, categories.description FROM categories 
-		LEFT JOIN categories_products ON (categories.id = categories_products.category_id)
-		WHERE categories_products.category_id = ? `, product)
+	rows, err := db.Query(`SELECT categories.id, categories.name, categories.description 
+                          FROM categories 
+		                      LEFT JOIN categories_products ON (categories.id = categories_products.category_id)
+                      		WHERE categories_products.category_id = ? `, product)
 	checkErr(err)
 
 	for rows.Next() {
