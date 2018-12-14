@@ -9,7 +9,8 @@ import (
 	"github.com/xyingsoft/golang-react/middleware"
 )
 
-func neuter(next http.Handler) http.Handler {
+// Disable file list of directory
+func notFoundHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if len(r.URL.Path) > 1 && strings.HasSuffix(r.URL.Path, "/") {
 			http.NotFound(w, r)
@@ -46,5 +47,5 @@ var Mount = func(router *mux.Router) {
 
 	// serve static files
 	fileServer := http.FileServer(http.Dir("./client/build"))
-	router.PathPrefix("/").Handler(neuter(fileServer))
+	router.PathPrefix("/").Handler(notFoundHandler(fileServer))
 }

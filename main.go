@@ -16,10 +16,10 @@ func main() {
 	routes.Mount(router)
 
 	port := os.Getenv("APP_PORT")
-	if port == "" {
+	if len(port) == 0 {
 		port = "3000"
 	}
 
 	fmt.Println("Listening: " + port)
-	log.Fatal(http.ListenAndServe(":"+port, router))
+	log.Fatal(http.ListenAndServe(":" + port, router))
 }

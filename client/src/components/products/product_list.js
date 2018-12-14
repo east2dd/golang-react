@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class ProductList extends Component {
     componentWillMount(){
     }
-  
+
     renderList = ({list}) => {
       if(list){
         return list.map((item)=>{
