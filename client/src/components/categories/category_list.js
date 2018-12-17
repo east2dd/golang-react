@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux';
+import CategoryItem from './category_item';
 
 class CategoryList extends Component {
     componentWillMount(){
     }
   
-    renderList = ({list}) => {
+    renderList = (list) => {
       if(list){
         return list.map((item)=>{
           return(
-            <div key={item.id} className="item-list">
-              <div className="name">{item.Name}</div>
-              <div className="description">{item.Description}</div>
-            </div>
+            <CategoryItem item={item} />
           )
         })
       }
@@ -21,19 +17,11 @@ class CategoryList extends Component {
   
     render() {
       return (
-        <div className="App">
-          <div className="categories_container">
-            {this.renderList(this.props)}
+          <div className="categories-list">
+            {this.renderList(this.props.categories)}
           </div>
-        </div>
       );
     }
   }
-
-  function mapStateToProps(state) {
-    return {
-      categories: state.categories
-    }
-  }
   
-  export default connect(mapStateToProps)(CategoryList)
+  export default CategoryList;

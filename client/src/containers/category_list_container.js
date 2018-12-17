@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ProductItem from './product_item';
+import CategoryList from '@/components/categories/category_list';
 
-class ProductList extends Component {
+class CategoryListContainer extends Component {
     componentWillMount(){
     }
-
+  
     renderList = ({list}) => {
       if(list){
-        return list.map((item)=>{
-          return(
-            <ProductItem item={item} />
-          )
-        })
+        return <CategoryList categories={list} />;
       }
     }
   
@@ -20,9 +16,7 @@ class ProductList extends Component {
       return (
         <div className="App">
           <div className="categories_container">
-            <div class="row">
-              {this.renderList(this.props)}
-            </div>
+            {this.renderList(this.props)}
           </div>
         </div>
       );
@@ -31,8 +25,8 @@ class ProductList extends Component {
 
   function mapStateToProps(state) {
     return {
-      produts: state.products
+      categories: state.categories
     }
   }
   
-  export default connect(mapStateToProps)(ProductList)
+  export default connect(mapStateToProps)(CategoryListContainer)

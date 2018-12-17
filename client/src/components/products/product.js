@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-import { getProduct, clearProduct } from '../../actions';
-import { connect } from 'react-redux';
 
-class ProductView extends Component {
-  componentWillMount(){
-    this.props.dispatch(getProduct(this.props.match.params.id))
-  }
-
-  componentWillUnmount(){
-    this.props.dispatch(clearProduct())
-  }
-
+class Product extends Component {
   renderProduct = (product) => (
     product ? 
-      <div className="product">
+      <div className="category">
         <div>
           <img src="https://via.placeholder.com/300.png"/>
         </div>
@@ -26,24 +16,9 @@ class ProductView extends Component {
   render() {
     let product = this.props.product;
     return (
-      <div>
-        <div className="row">
-          <div className="columns"><h1>Product</h1></div>
-        </div>
-        <div className="row">
-          <div className="columns">
-            {this.renderProduct(product)}
-          </div>
-        </div>
-      </div>
+      this.renderProduct(product)
     );
   }
 }
 
-function mapStateToProps(state){
-  return {
-    product: state.products.product
-  }
-}
-
-export default connect(mapStateToProps)(ProductView)
+export default Product;

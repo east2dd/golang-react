@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeContainer from '../../containers/home_container'
 
-const Home = () => {
+const Welcome = () => {
     return (
         <div>
             <HomeContainer/>
@@ -9,4 +9,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Welcome;

@@ -1,6 +1,28 @@
 import axios from '../axios-auth';
 import cookie from 'react-cookies'
 
+export function getCategory(id){
+  const request = axios.get(`/api/categories/${id}`)
+
+  return (dispatch)=>{
+    request.then(({data})=>{
+        dispatch({
+            type:'GET_CATEGORY',
+            payload: data.data
+        })
+    })
+  }
+}
+
+export function clearCategory(){
+  return{
+    type:'CLEAR_CATEGORY',
+    payload:{
+    }
+  }
+}
+
+
 export function getProducts(
     limit = 10,
     start = 0,
