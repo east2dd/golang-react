@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from './containers/home/welcome';
+import Home from './views/home/welcome';
+import ProductView from './views/products/show';
 import NotFound from './containers/404';
-import ProductView from './containers/product_view_container'
 import Login from './containers/user/login'
 import ProductEdit from './containers/user/products/edit'
 import Register from './containers/user/register';
