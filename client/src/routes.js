@@ -6,7 +6,7 @@ import ProductView from './views/products/show';
 import NotFound from './containers/404';
 import Login from './containers/user/login'
 import ProductEdit from './containers/user/products/edit'
-import Register from './containers/user/register';
+import UserRegister from './views/users/register';
 import Logout from './components/user/logout';
 import UserProfile from './containers/user/profile'
 
@@ -21,7 +21,7 @@ const Routes = () => {
         <Route path="/login" exact component={Login}/>
         <Route path="/user/profile" exact component={Auth(UserProfile)}/>
         <Route path="/user/logout" exact component={Auth(Logout,true)}/>
-        <Route path="/user/register" exact component={Register}/>
+        <Route path="/user/register" exact component={UserRegister}/>
         <Route path="/products/:id" exact component={ProductView}/>
         <Route path="/products/:id/edit" exact component={Auth(ProductEdit, true)}/>
         <Route component={Auth(NotFound, true)} />

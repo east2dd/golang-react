@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { getUsers, userRegister } from '../../actions';
 
-class Register extends PureComponent {
+class UserRegisterContainer extends PureComponent {
   state ={
     name:'',
     lastname:'',
@@ -59,50 +59,48 @@ class Register extends PureComponent {
   render() {
     let user = this.props.user;
     return (
-      <div className="rl_container">
-        <form onSubmit={this.submitForm}>
-          <div className="form_element">
-              <input
-                  type="text"
-                  placeholder="Enter name"
-                  value={this.state.name}
-                  onChange={this.handleInputName}
-                />
-          </div>
+      <form onSubmit={this.submitForm}>
+        <div className="form_element">
+            <input
+                type="text"
+                placeholder="Enter name"
+                value={this.state.name}
+                onChange={this.handleInputName}
+              />
+        </div>
 
-          <div className="form_element">
-              <input
-                  type="text"
-                  placeholder="Enter Lastname"
-                  value={this.state.lastname}
-                  onChange={this.handleInputLastname}
-                />
-          </div>
+        <div className="form_element">
+            <input
+                type="text"
+                placeholder="Enter Lastname"
+                value={this.state.lastname}
+                onChange={this.handleInputLastname}
+              />
+        </div>
 
-          <div className="form_element">
-              <input
-                  type="email"
-                  placeholder="Enter Email"
-                  value={this.state.email}
-                  onChange={this.handleInputEmail}
-                />
-          </div>
+        <div className="form_element">
+            <input
+                type="email"
+                placeholder="Enter Email"
+                value={this.state.email}
+                onChange={this.handleInputEmail}
+              />
+        </div>
 
-          <div className="form_element">
-              <input
-                  type="password"
-                  placeholder="Enter Password"
-                  value={this.state.password}
-                  onChange={this.handleInputPassword}
-                />
-          </div>
+        <div className="form_element">
+            <input
+                type="password"
+                placeholder="Enter Password"
+                value={this.state.password}
+                onChange={this.handleInputPassword}
+              />
+        </div>
 
-          <button type="submit">Create User</button>
-          <div className="error">
-              {this.state.error}
-          </div>
-        </form>
-      </div>
+        <button type="submit">Create User</button>
+        <div className="error">
+            {this.state.error}
+        </div>
+      </form>
     );
   }
 }
@@ -112,4 +110,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(Register)
+export default connect(mapStateToProps)(UserRegisterContainer)
