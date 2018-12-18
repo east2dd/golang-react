@@ -22,7 +22,7 @@ const Routes = () => {
         <Route path="/user/profile" exact component={Auth(UserProfile)}/>
         <Route path="/user/logout" exact component={Auth(Logout,true)}/>
         <Route path="/user/register" exact component={Register}/>
-        <Route path="/products/:id" exact component={Auth(ProductView, true)}/>
+        <Route path="/products/:id" exact component={ProductView}/>
         <Route path="/products/:id/edit" exact component={Auth(ProductEdit, true)}/>
         <Route component={Auth(NotFound, true)} />
       </Switch>

@@ -115,10 +115,12 @@ export function clearProduct(){
 export function loginUser({email,password}){
   const request = axios.post('/api/user/login',{ email, password })
               .then((response) => {
-                const token = response.data.data.Token
-                cookie.save('user-token', token)
-                axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-
+                if(response.data.status) {
+                  const token = response.data.data.Token
+                  cookie.save('user-token', token)
+                  axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+                }
+                
                 return response.data
               })
 
